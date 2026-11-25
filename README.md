@@ -90,6 +90,16 @@ The mapping to CWTN commands is very straight-forward
 | `BurnNow`            | `/rgl set BurnAlways 1`
 | `RaidAssistNum <N>`  | *Not supported*
 
+#### KissAssist Lua (`kissassist.lua`)
+
+| Boxr command         | Action
+|----------------------|-------------
+| `Camp`               | `/camphere on`
+| `Chase`              | `/chaseon`
+| `Manual`             | `/chaseoff` <br/> `/camphere off`
+| `BurnNow`            | `/burn on doburn`
+| `RaidAssistNum <N>`  | `/switchma <Name of Raid MA #N> tank 1`
+
 #### Entropy (`entropy`)
 
 | Boxr command         | Action

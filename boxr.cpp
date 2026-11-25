@@ -87,6 +87,7 @@ MasterBoxControl::MasterBoxControl() {
 	boxes.push_back(std::make_shared<AlsoKissAssistControl>());
 	boxes.push_back(std::make_shared<XGenControl>());
 	boxes.push_back(std::make_shared<RGMercsLuaControl>());
+	boxes.push_back(std::make_shared<KissAssistLuaControl>());
 	boxes.push_back(std::make_shared<CwtnControl>());
 }
 
@@ -207,6 +208,20 @@ void KissAssistControl::BurnNow() {
 
 void KissAssistControl::SetRaidAssistNum(int raidAssistNum) {
 	boxrRunCommandf("/switchma {} tank 1", GetRaidMainAssistName(raidAssistNum));
+}
+
+bool KissAssistLuaControl::IsRunning() {
+	// /kapause is a soft pause: the script stays RUNNING while paused
+	return EvaluateBooleanMacroExpression("${Lua.Script[kissassist-lua].Status.Equal[RUNNING]}");
+}
+
+// kissassist-lua does its own cleanup on pause (attack, stick, nav, pet, bard medley), so no PauseTwist
+void KissAssistLuaControl::Pause() {
+	boxrRunCommandf("/kapause on");
+}
+
+void KissAssistLuaControl::Unpause() {
+	boxrRunCommandf("/kapause off");
 }
 
 bool MuleAssistControl::IsRunning() {

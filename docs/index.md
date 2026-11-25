@@ -78,6 +78,16 @@ TLO (see below).
 | BurnNow | `/rgl set BurnAlways 1` |
 | RaidAssistNum `<N>` | *not supported* |
 
+### KissAssist Lua (`kissassist.lua`)
+
+| Boxr command | Action |
+|--------------|--------|
+| Camp | `/camphere on` |
+| Chase | `/chaseon` |
+| Manual | `/chaseoff`<br/>`/camphere off` |
+| BurnNow | `/burn on doburn` |
+| RaidAssistNum `<N>` | `/switchma <Name of Raid MA #N> tank 1` |
+
 ### MuleAssist (`muleassist`)
 
 | Boxr command | Action |
