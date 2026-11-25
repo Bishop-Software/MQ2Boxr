@@ -211,23 +211,17 @@ void KissAssistControl::SetRaidAssistNum(int raidAssistNum) {
 }
 
 bool KissAssistLuaControl::IsRunning() {
-	// A paused script still owns the character, so it must stay detected for Unpause and Boxr.Paused
-	return EvaluateBooleanMacroExpression(KISSASSIST_LUA_STATUS_QUERY("RUNNING"))
-		|| EvaluateBooleanMacroExpression(KISSASSIST_LUA_STATUS_QUERY("PAUSED"));
+	// /kapause is a soft pause: the script stays RUNNING while paused
+	return EvaluateBooleanMacroExpression("${Lua.Script[kissassist-lua].Status.Equal[RUNNING]}");
 }
 
-// `/lua pause <script>` toggles, so only send it when the script is in the state we expect
+// kissassist-lua does its own cleanup on pause (attack, stick, nav, pet, bard medley), so no PauseTwist
 void KissAssistLuaControl::Pause() {
-	if (EvaluateBooleanMacroExpression(KISSASSIST_LUA_STATUS_QUERY("RUNNING"))) {
-		boxrRunCommandf("/lua pause " KISSASSIST_LUA_SCRIPT);
-	}
-	PauseTwist();
+	boxrRunCommandf("/kapause on");
 }
 
 void KissAssistLuaControl::Unpause() {
-	if (EvaluateBooleanMacroExpression(KISSASSIST_LUA_STATUS_QUERY("PAUSED"))) {
-		boxrRunCommandf("/lua pause " KISSASSIST_LUA_SCRIPT);
-	}
+	boxrRunCommandf("/kapause off");
 }
 
 bool MuleAssistControl::IsRunning() {

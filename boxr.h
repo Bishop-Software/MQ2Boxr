@@ -4,8 +4,6 @@
 #include <mq/Plugin.h>
 
 #define MACRO_PAUSED_QUERY "${Macro.Paused}"
-#define KISSASSIST_LUA_SCRIPT "kissassist-lua"
-#define KISSASSIST_LUA_STATUS_QUERY(status) "${Lua.Script[" KISSASSIST_LUA_SCRIPT "].Status.Equal[" status "]}"
 
 class BoxrException : public std::runtime_error {
 public:
@@ -106,7 +104,8 @@ public:
 	bool IsRunning() override;
 	void Pause() override;
 	void Unpause() override;
-	inline std::string GetPauseQuery() override { return KISSASSIST_LUA_STATUS_QUERY("PAUSED"); }
+	// TLO registered by kissassist-lua; reports kissassist-lua's own soft pause (/kapause)
+	inline std::string GetPauseQuery() override { return "${KissAssist.Paused}"; }
 };
 
 class AlsoKissAssistControl : public KissAssistControl {

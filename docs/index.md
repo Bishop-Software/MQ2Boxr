@@ -80,12 +80,8 @@ TLO (see below).
 
 ### KissAssist Lua (`kissassist.lua`)
 
-Detected when the `kissassist-lua` Lua script is running or paused.
-
 | Boxr command | Action |
 |--------------|--------|
-| Pause | `/lua pause kissassist-lua` (only if running) |
-| Unpause | `/lua pause kissassist-lua` (only if paused) |
 | Camp | `/camphere on` |
 | Chase | `/chaseon` |
 | Manual | `/chaseoff`<br/>`/camphere off` |
