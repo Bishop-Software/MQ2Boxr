@@ -87,6 +87,7 @@ MasterBoxControl::MasterBoxControl() {
 	boxes.push_back(std::make_shared<AlsoKissAssistControl>());
 	boxes.push_back(std::make_shared<XGenControl>());
 	boxes.push_back(std::make_shared<RGMercsLuaControl>());
+	boxes.push_back(std::make_shared<KissAssistLuaControl>());
 	boxes.push_back(std::make_shared<CwtnControl>());
 }
 
@@ -207,6 +208,26 @@ void KissAssistControl::BurnNow() {
 
 void KissAssistControl::SetRaidAssistNum(int raidAssistNum) {
 	boxrRunCommandf("/switchma {} tank 1", GetRaidMainAssistName(raidAssistNum));
+}
+
+bool KissAssistLuaControl::IsRunning() {
+	// A paused script still owns the character, so it must stay detected for Unpause and Boxr.Paused
+	return EvaluateBooleanMacroExpression(KISSASSIST_LUA_STATUS_QUERY("RUNNING"))
+		|| EvaluateBooleanMacroExpression(KISSASSIST_LUA_STATUS_QUERY("PAUSED"));
+}
+
+// `/lua pause <script>` toggles, so only send it when the script is in the state we expect
+void KissAssistLuaControl::Pause() {
+	if (EvaluateBooleanMacroExpression(KISSASSIST_LUA_STATUS_QUERY("RUNNING"))) {
+		boxrRunCommandf("/lua pause " KISSASSIST_LUA_SCRIPT);
+	}
+	PauseTwist();
+}
+
+void KissAssistLuaControl::Unpause() {
+	if (EvaluateBooleanMacroExpression(KISSASSIST_LUA_STATUS_QUERY("PAUSED"))) {
+		boxrRunCommandf("/lua pause " KISSASSIST_LUA_SCRIPT);
+	}
 }
 
 bool MuleAssistControl::IsRunning() {
