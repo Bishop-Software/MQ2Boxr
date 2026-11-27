@@ -211,17 +211,42 @@ void KissAssistControl::SetRaidAssistNum(int raidAssistNum) {
 }
 
 bool KissAssistLuaControl::IsRunning() {
-	// /kapause is a soft pause: the script stays RUNNING while paused
+	// /kactl pause is a soft pause: the script stays RUNNING while paused
 	return EvaluateBooleanMacroExpression("${Lua.Script[kissassist-lua].Status.Equal[RUNNING]}");
 }
 
 // kissassist-lua does its own cleanup on pause (attack, stick, nav, pet, bard medley), so no PauseTwist
 void KissAssistLuaControl::Pause() {
-	boxrRunCommandf("/kapause on");
+	boxrRunCommandf("/kactl pause on");
 }
 
 void KissAssistLuaControl::Unpause() {
-	boxrRunCommandf("/kapause off");
+	boxrRunCommandf("/kactl pause off");
+}
+
+// /kactl mode sets camp and chase together, so Manual needs no delayed second
+// command (the mac's /chaseoff + /timed 3 /camphere off).
+void KissAssistLuaControl::Chase() {
+	boxrRunCommandf("/kactl mode chase");
+}
+
+void KissAssistLuaControl::Camp() {
+	boxrRunCommandf("/kactl mode camp here");
+}
+
+void KissAssistLuaControl::Manual() {
+	boxrRunCommandf("/kactl mode manual");
+}
+
+// kissassist-lua deprecates the mac's /burn and /switchma (they print a notice);
+// /kactl burn turns burn on for the session and burns now, as /burn on doburn does.
+void KissAssistLuaControl::BurnNow() {
+	boxrRunCommandf("/kactl burn");
+}
+
+// /kactl ma only tells the group with 'group', so this matches /switchma ... 1
+void KissAssistLuaControl::SetRaidAssistNum(int raidAssistNum) {
+	boxrRunCommandf("/kactl ma {} tank", GetRaidMainAssistName(raidAssistNum));
 }
 
 bool MuleAssistControl::IsRunning() {

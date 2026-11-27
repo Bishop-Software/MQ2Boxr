@@ -90,15 +90,16 @@ The mapping to CWTN commands is very straight-forward
 | `BurnNow`            | `/rgl set BurnAlways 1`
 | `RaidAssistNum <N>`  | *Not supported*
 
-#### KissAssist Lua (`kissassist.lua`)
+#### KissAssist Lua (`kissassist-lua`)
 
 | Boxr command         | Action
 |----------------------|-------------
-| `Camp`               | `/camphere on`
-| `Chase`              | `/chaseon`
-| `Manual`             | `/chaseoff` <br/> `/camphere off`
-| `BurnNow`            | `/burn on doburn`
-| `RaidAssistNum <N>`  | `/switchma <Name of Raid MA #N> tank 1`
+| `Pause` / `Unpause`  | `/kactl pause on` / `/kactl pause off` (soft pause; `${KissAssist.Paused}`)
+| `Camp`               | `/kactl mode camp here`
+| `Chase`              | `/kactl mode chase`
+| `Manual`             | `/kactl mode manual` (camp and chase off together, no delay)
+| `BurnNow`            | `/kactl burn`
+| `RaidAssistNum <N>`  | `/kactl ma <Name of Raid MA #N> tank`
 
 #### Entropy (`entropy`)
 

@@ -99,12 +99,17 @@ public:
 
 class KissAssistLuaControl : public KissAssistControl {
 public:
-	const char* GetKey() override { return "kissassist.lua"; }
+	const char* GetKey() override { return "kissassist-lua"; }
 	const char* GetName() override { return "KissAssist - Lua edition"; }
 	bool IsRunning() override;
 	void Pause() override;
 	void Unpause() override;
-	// TLO registered by kissassist-lua; reports kissassist-lua's own soft pause (/kapause)
+	void Chase() override;
+	void Camp() override;
+	void Manual() override;
+	void BurnNow() override;
+	void SetRaidAssistNum(int raidAssistNum) override;
+	// TLO registered by kissassist-lua; reports kissassist-lua's own soft pause (/kactl pause)
 	inline std::string GetPauseQuery() override { return "${KissAssist.Paused}"; }
 };
 
