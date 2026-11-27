@@ -86,8 +86,8 @@ TLO (see below).
 | Camp | `/kactl mode camp here` |
 | Chase | `/kactl mode chase` |
 | Manual | `/kactl mode manual` (camp and chase off together, no delay) |
-| BurnNow | `/burn on doburn` |
-| RaidAssistNum `<N>` | `/switchma <Name of Raid MA #N> tank 1` |
+| BurnNow | `/kactl burn` |
+| RaidAssistNum `<N>` | `/kactl ma <Name of Raid MA #N> tank` |
 
 ### MuleAssist (`muleassist`)
 

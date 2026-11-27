@@ -107,6 +107,8 @@ public:
 	void Chase() override;
 	void Camp() override;
 	void Manual() override;
+	void BurnNow() override;
+	void SetRaidAssistNum(int raidAssistNum) override;
 	// TLO registered by kissassist-lua; reports kissassist-lua's own soft pause (/kactl pause)
 	inline std::string GetPauseQuery() override { return "${KissAssist.Paused}"; }
 };
