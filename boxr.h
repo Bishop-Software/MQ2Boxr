@@ -104,7 +104,10 @@ public:
 	bool IsRunning() override;
 	void Pause() override;
 	void Unpause() override;
-	// TLO registered by kissassist-lua; reports kissassist-lua's own soft pause (/kapause)
+	void Chase() override;
+	void Camp() override;
+	void Manual() override;
+	// TLO registered by kissassist-lua; reports kissassist-lua's own soft pause (/kactl pause)
 	inline std::string GetPauseQuery() override { return "${KissAssist.Paused}"; }
 };
 
