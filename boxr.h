@@ -99,7 +99,7 @@ public:
 
 class KissAssistLuaControl : public KissAssistControl {
 public:
-	const char* GetKey() override { return "kissassist.lua"; }
+	const char* GetKey() override { return "kissassist-lua"; }
 	const char* GetName() override { return "KissAssist - Lua edition"; }
 	bool IsRunning() override;
 	void Pause() override;

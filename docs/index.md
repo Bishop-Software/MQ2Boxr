@@ -78,7 +78,7 @@ TLO (see below).
 | BurnNow | `/rgl set BurnAlways 1` |
 | RaidAssistNum `<N>` | *not supported* |
 
-### KissAssist Lua (`kissassist.lua`)
+### KissAssist Lua (`kissassist-lua`)
 
 | Boxr command | Action |
 |--------------|--------|
